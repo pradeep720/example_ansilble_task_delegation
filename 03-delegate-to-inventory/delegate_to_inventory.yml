@@ -1,0 +1,29 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'Delegate to the host in inventory'
+
+  # Target: where our play will run and options it will run with
+  hosts: ansnode1
+
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:       
+     - name: add delegation host
+       add_host:
+         name: ansnode5
+         ansible_host: 192.168.43.98
+         ansible_user: root
+     - name: Install web packages
+       yum:
+         name: httpd
+         state: present
+       delegate_to: ansnode5
+     - name: Installing git packages
+       yum:
+         name: git
+         state: present
+
+# Three dots indicate the end of a YAML document
+...

@@ -1,0 +1,20 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'local_action directive in the play'
+
+
+  # Target: where our play will run and options it will run with
+  hosts: webservers
+
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:       
+     - name: get the hostname using local_action
+       local_action: command hostname
+       register: display_hostname_output
+       changed_when: false
+     - debug: msg="{{display_hostname_output.stdout}}"
+# Three dots indicate the end of a YAML document
+...

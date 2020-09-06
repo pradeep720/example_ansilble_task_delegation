@@ -1,0 +1,23 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'Delegate to the gather facts from inventory hosts'
+
+  # Target: where our play will run and options it will run with
+  hosts: webservers
+  gather_facts: true
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:       
+     - name: Gathering facts from nodes
+       setup:
+       delegate_to: "{{ item }}"
+       delegate_facts: true
+       with_items: "{{groups['webservers']}}"
+       
+     - name: Show IP address
+       debug: 
+         var: ansible_enp0s8['ipv4']['address']
+# Three dots indicate the end of a YAML document
+...
