@@ -6,7 +6,7 @@
 - name: 'Delegating the hosts to the taksk'
   
   # Target: where our play will run and options it will run with
-  hosts: webserver
+  hosts: webservers
 
   # Task: the list of tasks that will be executed within the playbook
   tasks:       
