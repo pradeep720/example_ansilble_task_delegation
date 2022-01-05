@@ -4,9 +4,9 @@
 # of plays, with each play being a dictionary
 
 - name: 'Delegating the hosts to the taksk'
-
+  
   # Target: where our play will run and options it will run with
-  hosts: webservers
+  hosts: target1
 
   # Task: the list of tasks that will be executed within the playbook
   tasks:       
